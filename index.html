@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Watch the latest trending viral video online in High Quality. Full stream and download available.">
+    
+    <meta property="og:title" content="🔥 Watch Full HD Viral Video Online 😱" />
+    <meta property="og:description" content="Click here to watch and download the full video in high quality..." />
+    <meta property="og:image" content="https://i.postimg.cc/vHTYHm2D/97383691-016-a917.jpg" />
+    <meta property="og:type" content="website" />
+    
+    <title>Video Player</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f0f12; color: #ffffff; text-align: center; padding: 15px; margin: 0; }
+        .main-container { max-width: 500px; margin: 20px auto; background: #1a1a24; padding: 20px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.7); }
+        .cover-image { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
+        h2 { font-size: 20px; margin-top: 15px; color: #ff4757; }
+        p { font-size: 14px; color: #a4b0be; }
+        .btn { display: block; width: 100%; box-sizing: border-box; padding: 14px; font-size: 18px; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; margin: 15px 0; transition: 0.3s ease; }
+        .whatsapp-btn { background-color: #25D366; color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+        .progress-box { background-color: #2f3542; border-radius: 20px; padding: 3px; margin: 20px 0; }
+        .progress-bar { width: 0%; height: 20px; background: linear-gradient(90deg, #25D366, #2ed573); border-radius: 20px; transition: width 0.4s ease; }
+        .action-zone { display: none; }
+        .download-btn { background-color: #ff4757; color: white; }
+        .direct-btn { background-color: #1e90ff; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div id="shareZone">
+        <img src="https://i.postimg.cc/vHTYHm2D/97383691-016-a917.jpg" alt="Video Preview" class="cover-image">
+        <h2>Share to 5 WhatsApp Groups to Unlock Video!</h2>
+        <p>The link will open automatically after the bar is 100% full.</p>
+        <div class="progress-box">
+            <div id="myBar" class="progress-bar"></div>
+        </div>
+        <button id="wpBtn" class="btn whatsapp-btn">Share on WhatsApp</button>
+    </div>
+
+    <div id="actionZone" class="action-zone">
+        <img src="https://i.postimg.cc/wvYM1dyZ/202366-orignew-edit-1523045047845395.jpg" alt="Link Ready" class="cover-image">
+        <h2>Congratulations! Your Link is Ready</h2>
+        <p>Choose a method below to access the video:</p>
+        <button id="dlBtn" class="btn download-btn">📥 Download Video</button>
+        <button id="wtBtn" class="btn direct-btn">▶️ Watch Online</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    const adsterra = "https://www.effectivecpmnetwork.com/byubg65k?key=4eb6bd8b3cf5a2f58f5ce72f0b6b529e";
+    const monetag = "https://omg10.com/4/11163828";
+
+    let shareCount = parseInt(localStorage.getItem('sys_v5_sh')) || 0;
+    let clicks = { dl: parseInt(sessionStorage.getItem('c_dl5')) || 0, dt: parseInt(sessionStorage.getItem('c_dt5')) || 0 };
+    let clickTime = 0;
+    let isSharing = false;
+
+    window.addEventListener('DOMContentLoaded', () => {
+        render();
+        if (shareCount >= 5) unlock();
+        document.getElementById('wpBtn').addEventListener('click', goWp);
+        document.getElementById('dlBtn').addEventListener('click', () => handle('dl'));
+        document.getElementById('wtBtn').addEventListener('click', () => handle('dt'));
+    });
+
+    function render() { const b = document.getElementById("myBar"); if (b) b.style.width = (Math.min(shareCount, 5) * 20) + "%"; }
+    function unlock() { document.getElementById("shareZone").style.display = "none"; document.getElementById("actionZone").style.display = "block"; }
+
+    function goWp() {
+        clickTime = Date.now();
+        isSharing = true;
+        const t = encodeURIComponent("Wow look at this full video! 😱🔥: " + window.location.href);
+        window.open("https://api.whatsapp.com/send?text=" + t, '_blank');
+    }
+
+    window.addEventListener('focus', () => {
+        if (isSharing) {
+            isSharing = false;
+            if (Date.now() - clickTime > 3500) {
+                shareCount++;
+                localStorage.setItem('sys_v5_sh', shareCount);
+                render();
+                if (shareCount >= 5) setTimeout(unlock, 500);
+            }
+        }
+    });
+
+    async function handle(type) {
+        clicks[type]++;
+        sessionStorage.setItem('c_' + type, clicks[type]);
+
+        if (clicks[type] === 1) {
+            window.open(adsterra, '_blank');
+            setTimeout(() => { window.location.href = monetag; }, 250);
+        } else if (clicks[type] === 2) {
+            window.open(adsterra, '_blank');
+        } else {
+            // 🚀 POST Request එකක් මගින් සර්වර් එකෙන් ලින්ක් එක ඉල්ලීම
+            try {
+                const response = await fetch('/api/video', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ secureToken: 'Vercel_Secure_X_9921' })
+                });
+                const data = await response.json();
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    alert("Access Denied!");
+                }
+            } catch (err) {
+                console.error("Error fetching video link");
+            }
+        }
+    }
+})();
+</script>
+
+</body>
+</html>
