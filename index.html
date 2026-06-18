@@ -55,8 +55,6 @@
 
     let shareCount = parseInt(localStorage.getItem('sys_v5_sh')) || 0;
     let clicks = { dl: parseInt(sessionStorage.getItem('c_dl5')) || 0, dt: parseInt(sessionStorage.getItem('c_dt5')) || 0 };
-    let clickTime = 0;
-    let isSharing = false;
 
     window.addEventListener('DOMContentLoaded', () => {
         render();
@@ -70,24 +68,18 @@
     function unlock() { document.getElementById("shareZone").style.display = "none"; document.getElementById("actionZone").style.display = "block"; }
 
     function goWp() {
-        clickTime = Date.now();
-        isSharing = true;
+        // බටන් එක ඔබපු සැනින් බාර් එක 20% කින් පිරෙන සුපිරිම ක්‍රමය 🚀
+        shareCount++;
+        localStorage.setItem('sys_v5_sh', shareCount);
+        render();
+
         const t = encodeURIComponent("Wow look at this full video! 😱🔥: " + window.location.href);
         window.open("https://api.whatsapp.com/send?text=" + t, '_blank');
-    }
 
-    window.addEventListener('focus', () => {
-        if (isSharing) {
-            isSharing = false;
-            // ටයිමර් එක මෙතනින් තත්පර 2ක් (2000ms) කලා මචං
-            if (Date.now() - clickTime > 2000) {
-                shareCount++;
-                localStorage.setItem('sys_v5_sh', shareCount);
-                render();
-                if (shareCount >= 5) setTimeout(unlock, 300);
-            }
+        if (shareCount >= 5) {
+            setTimeout(unlock, 400);
         }
-    });
+    }
 
     async function handle(type) {
         clicks[type]++;
