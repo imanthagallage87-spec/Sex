@@ -54,21 +54,26 @@
     const monetag = "https://omg10.com/4/11163828";
 
     let shareCount = parseInt(localStorage.getItem('sys_v5_sh')) || 0;
-    let clicks = { dl: parseInt(sessionStorage.getItem('c_dl5')) || 0, dt: parseInt(sessionStorage.getItem('c_dt5')) || 0 };
+    let clickCount = parseInt(sessionStorage.getItem('act_cl_v6')) || 0;
+    let realVideoUrl = sessionStorage.getItem('cached_vid_v6') || '';
 
     window.addEventListener('DOMContentLoaded', () => {
         render();
         if (shareCount >= 5) unlock();
         document.getElementById('wpBtn').addEventListener('click', goWp);
-        document.getElementById('dlBtn').addEventListener('click', () => handle('dl'));
-        document.getElementById('wtBtn').addEventListener('click', () => handle('dt'));
+        document.getElementById('dlBtn').addEventListener('click', handle);
+        document.getElementById('wtBtn').addEventListener('click', handle);
     });
 
     function render() { const b = document.getElementById("myBar"); if (b) b.style.width = (Math.min(shareCount, 5) * 20) + "%"; }
-    function unlock() { document.getElementById("shareZone").style.display = "none"; document.getElementById("actionZone").style.display = "block"; }
+    
+    function unlock() { 
+        document.getElementById("shareZone").style.display = "none"; 
+        document.getElementById("actionZone").style.display = "block"; 
+        preFetchVideo(); // පේජ් එක අන්ලොක් වුණු ගමන්ම වීඩියෝ ලින්ක් එක බැක්ග්‍රවුන්ඩ් එකෙන් අරන් තියාගන්නවා 🚀
+    }
 
     function goWp() {
-        // බටන් එක ඔබපු සැනින් බාර් එක 20% කින් පිරෙන සුපිරිම ක්‍රමය 🚀
         shareCount++;
         localStorage.setItem('sys_v5_sh', shareCount);
         render();
@@ -81,30 +86,52 @@
         }
     }
 
-    async function handle(type) {
-        clicks[type]++;
-        sessionStorage.setItem('c_' + type, clicks[type]);
+    async function preFetchVideo() {
+        if (realVideoUrl) return;
+        try {
+            const response = await fetch('/api/video', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ secureToken: 'Vercel_Secure_X_9921' })
+            });
+            const data = await response.json();
+            if (data.url) {
+                realVideoUrl = data.url;
+                sessionStorage.setItem('cached_vid_v6', realVideoUrl);
+            }
+        } catch (err) {
+            console.error("Pre-fetch error");
+        }
+    }
 
-        if (clicks[type] === 1) {
+    async function handle() {
+        clickCount++;
+        sessionStorage.setItem('act_cl_v6', clickCount);
+
+        if (clickCount === 1) {
+            // 1 වෙනි පාර: ඇඩ්ස්ටෙරා ඇරිලා ප්‍රධාන පිටුව මොනෙටැග් එකට යනවා
             window.open(adsterra, '_blank');
             setTimeout(() => { window.location.href = monetag; }, 250);
-        } else if (clicks[type] === 2) {
+        } else if (clickCount === 2) {
+            // 2 වෙනි පාර: ආයෙත් ඇඩ්ස්ටෙරා ඇඩ් එකක් විතරක් වෙනම ටැබ් එකක ඇරෙනවා
             window.open(adsterra, '_blank');
         } else {
-            try {
-                const response = await fetch('/api/video', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ secureToken: 'Vercel_Secure_X_9921' })
-                });
-                const data = await response.json();
-                if (data.url) {
-                    window.location.href = data.url;
-                } else {
-                    alert("Access Denied!");
+            // 3 වෙනි පාර සහ ඊට පසු: කෙලින්ම කලින්ම සේව් කරගත් ඇත්තම වීඩියෝ එක ක්ෂණිකව ප්ලේ වෙනවා!
+            if (realVideoUrl) {
+                window.location.href = realVideoUrl;
+            } else {
+                // සසම්භාවීව ලින්ක් එක සේව් වී නොතිබුණොත් බැකප් එකක් ලෙස සැනෙකින් ෆෙච් කරනවා
+                try {
+                    const response = await fetch('/api/video', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ secureToken: 'Vercel_Secure_X_9921' })
+                    });
+                    const data = await response.json();
+                    if (data.url) { window.location.href = data.url; }
+                } catch (err) {
+                    console.error("Video redirect failed");
                 }
-            } catch (err) {
-                console.error("Error fetching video link");
             }
         }
     }
