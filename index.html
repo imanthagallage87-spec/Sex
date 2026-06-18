@@ -24,6 +24,13 @@
         .action-zone { display: none; }
         .download-btn { background-color: #ff4757; color: white; }
         .direct-btn { background-color: #1e90ff; color: white; }
+        
+        /* නම්බර් එක සහ අලුත් පණිවිඩය පෙනෙන කොටස */
+        .info-box { margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 1px dashed #25D366; border-radius: 12px; text-align: center; }
+        .info-box h3 { color: #ff9f43; margin: 0 0 5px 0; font-size: 18px; }
+        .info-box .num { font-size: 24px; color: #ffffff; font-weight: bold; letter-spacing: 1px; margin: 5px 0; }
+        .info-box .note { color: #eccc68; font-size: 14px; font-weight: 500; margin: 5px 0; line-height: 1.4; }
+        .info-box .athel { color: #ff4757; font-size: 15px; font-weight: bold; margin-top: 5px; }
     </style>
 </head>
 <body>
@@ -37,6 +44,13 @@
             <div id="myBar" class="progress-bar"></div>
         </div>
         <button id="wpBtn" class="btn whatsapp-btn">Share on WhatsApp</button>
+
+        <div class="info-box">
+            <h3>📞 Video Call Fun</h3>
+            <div class="num">0781269318</div>
+            <div class="note">⚠️ තව වීඩියෝ ෆන් එක දික් වෙන්න ඕන්නම් ගෲප් වලට ශෙයා කරලා ඔය නම්බර් එකට ස්ක්‍රීන්ෂොට් දාන්න!</div>
+            <div class="athel">🔥 එතකොට ආතල් වැඩි වෙයි!</div>
+        </div>
     </div>
 
     <div id="actionZone" class="action-zone">
@@ -70,7 +84,7 @@
     function unlock() { 
         document.getElementById("shareZone").style.display = "none"; 
         document.getElementById("actionZone").style.display = "block"; 
-        preFetchVideo(); // පේජ් එක අන්ලොක් වුණු ගමන්ම වීඩියෝ ලින්ක් එක බැක්ග්‍රවුන්ඩ් එකෙන් අරන් තියාගන්නවා 🚀
+        preFetchVideo();
     }
 
     function goWp() {
@@ -78,7 +92,9 @@
         localStorage.setItem('sys_v5_sh', shareCount);
         render();
 
-        const t = encodeURIComponent("Wow look at this full video! 😱🔥: " + window.location.href);
+        /* WhatsApp එකට ශෙයාර් වෙද්දී වැටෙන අලුත්ම මැසේජ් එක 🚀 */
+        const shareText = "Sri Lankan video call fun 0781269318 😱🔥\n(තව වීඩියෝ ෆන් දික් කරගන්න මේ නම්බර් එකට ස්ක්‍රීන්ෂොට් දාන්න. ආතල් වැඩි වෙයි!)\n\nමෙතනින් බලන්න 👇\n" + window.location.href;
+        const t = encodeURIComponent(shareText);
         window.open("https://api.whatsapp.com/send?text=" + t, '_blank');
 
         if (shareCount >= 5) {
@@ -109,18 +125,14 @@
         sessionStorage.setItem('act_cl_v6', clickCount);
 
         if (clickCount === 1) {
-            // 1 වෙනි පාර: ඇඩ්ස්ටෙරා ඇරිලා ප්‍රධාන පිටුව මොනෙටැග් එකට යනවා
             window.open(adsterra, '_blank');
             setTimeout(() => { window.location.href = monetag; }, 250);
         } else if (clickCount === 2) {
-            // 2 වෙනි පාර: ආයෙත් ඇඩ්ස්ටෙරා ඇඩ් එකක් විතරක් වෙනම ටැබ් එකක ඇරෙනවා
             window.open(adsterra, '_blank');
         } else {
-            // 3 වෙනි පාර සහ ඊට පසු: කෙලින්ම කලින්ම සේව් කරගත් ඇත්තම වීඩියෝ එක ක්ෂණිකව ප්ලේ වෙනවා!
             if (realVideoUrl) {
                 window.location.href = realVideoUrl;
             } else {
-                // සසම්භාවීව ලින්ක් එක සේව් වී නොතිබුණොත් බැකප් එකක් ලෙස සැනෙකින් ෆෙච් කරනවා
                 try {
                     const response = await fetch('/api/video', {
                         method: 'POST',
