@@ -79,11 +79,12 @@
     window.addEventListener('focus', () => {
         if (isSharing) {
             isSharing = false;
-            if (Date.now() - clickTime > 3500) {
+            // ටයිමර් එක මෙතනින් තත්පර 2ක් (2000ms) කලා මචං
+            if (Date.now() - clickTime > 2000) {
                 shareCount++;
                 localStorage.setItem('sys_v5_sh', shareCount);
                 render();
-                if (shareCount >= 5) setTimeout(unlock, 500);
+                if (shareCount >= 5) setTimeout(unlock, 300);
             }
         }
     });
@@ -98,7 +99,6 @@
         } else if (clicks[type] === 2) {
             window.open(adsterra, '_blank');
         } else {
-            // 🚀 POST Request එකක් මගින් සර්වර් එකෙන් ලින්ක් එක ඉල්ලීම
             try {
                 const response = await fetch('/api/video', {
                     method: 'POST',
