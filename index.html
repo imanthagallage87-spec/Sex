@@ -1,154 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Watch the latest trending viral video online in High Quality. Full stream and download available.">
+    <title>පොසොන් විශේෂ ප්‍රතිලාභය - නොමිලේ 90GB</title>
     
-    <meta property="og:title" content="🔥 Watch Full HD Viral Video Online 😱" />
-    <meta property="og:description" content="Click here to watch and download the full video in high quality..." />
-    <meta property="og:image" content="https://i.postimg.cc/vHTYHm2D/97383691-016-a917.jpg" />
+    <meta property="og:title" content="🔥 පොසොන් පුර පසළොස්වක පෝය විශේෂ ප්‍රතිලාභය: සියලුම ජාලයන් සඳහා 90GB නොමිලේ දත්ත! 😱" />
+    <meta property="og:description" content="දැන්ම ඔබගේ නොමිලේ ඩේටා සක්‍රීය කරගන්න..." />
+    <meta property="og:image" content="https://ibb.co/PG4HLnbQ" />
     <meta property="og:type" content="website" />
-    
-    <title>Video Player</title>
+
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f0f12; color: #ffffff; text-align: center; padding: 15px; margin: 0; }
-        .main-container { max-width: 500px; margin: 20px auto; background: #1a1a24; padding: 20px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.7); }
-        .cover-image { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); margin-bottom: 10px; }
-        h2 { font-size: 20px; margin-top: 15px; color: #ff4757; }
-        p { font-size: 14px; color: #a4b0be; }
-        .btn { display: block; width: 100%; box-sizing: border-box; padding: 14px; font-size: 18px; font-weight: bold; border: none; border-radius: 30px; cursor: pointer; margin: 15px 0; transition: 0.3s ease; }
-        .whatsapp-btn { background-color: #25D366; color: white; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
-        .progress-box { background-color: #2f3542; border-radius: 20px; padding: 3px; margin: 20px 0; }
-        .progress-bar { width: 0%; height: 20px; background: linear-gradient(90deg, #25D366, #2ed573); border-radius: 20px; transition: width 0.4s ease; }
-        .action-zone { display: none; }
-        .download-btn { background-color: #ff4757; color: white; }
-        .direct-btn { background-color: #1e90ff; color: white; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f1f2f6; color: #333; margin: 0; padding: 0; text-align: center; }
+        .header-banner { background: linear-gradient(135deg, #000000, #130f40); color: white; padding: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .header-banner h1 { margin: 5px 0; font-size: 24px; color: #f1c40f; }
+        .theme-sub { color: #fffa65; font-weight: bold; font-size: 14px; }
         
-        /* නම්බර් එක සහ අලුත් පණිවිඩය පෙනෙන කොටස */
-        .info-box { margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.05); border: 1px dashed #25D366; border-radius: 12px; text-align: center; }
-        .info-box h3 { color: #ff9f43; margin: 0 0 5px 0; font-size: 18px; }
-        .info-box .num { font-size: 24px; color: #ffffff; font-weight: bold; letter-spacing: 1px; margin: 5px 0; }
-        .info-box .note { color: #eccc68; font-size: 14px; font-weight: 500; margin: 5px 0; line-height: 1.4; }
-        .info-box .athel { color: #ff4757; font-size: 15px; font-weight: bold; margin-top: 5px; }
+        .logos { display: flex; justify-content: center; gap: 15px; margin: 10px 0; background: white; padding: 5px; border-radius: 5px; }
+        
+        .main-container { max-width: 480px; margin: 15px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #0056b3; }
+        .main-banner-img { width: 100%; border-radius: 6px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        h2 { font-size: 18px; color: #0c2461; line-height: 1.5; margin-top: 10px; }
+        p { font-size: 14px; color: #57606f; line-height: 1.6; }
+        
+        .phone-input-field { width: 100%; box-sizing: border-box; padding: 14px; font-size: 18px; border-radius: 8px; border: 2px solid #ced6e0; text-align: center; font-weight: bold; letter-spacing: 1px; margin-bottom: 5px; outline: none; }
+        .phone-input-field:focus { border-color: #0c2461; }
+        .error-text { color: #ff4757; font-weight: bold; font-size: 14px; margin: 5px 0 15px 0; display: none; }
+        
+        .btn { display: block; width: 100%; box-sizing: border-box; padding: 15px; font-size: 18px; font-weight: bold; border: none; border-radius: 8px; cursor: pointer; margin: 15px 0; transition: 0.3s; }
+        .blue-btn { background-color: #0c2461; color: white; }
+        .green-btn { background-color: #25D366; color: white; font-size: 22px; box-shadow: 0 4px 10px rgba(37,211,102,0.3); }
+        .black-btn { background-color: #0a1128; color: white; }
+        
+        .progress-box { background-color: #dfe4ea; border: 2px solid #000; height: 35px; width: 100%; position: relative; margin: 15px 0; }
+        .progress-bar { width: 0%; height: 100%; background-color: #25D366; transition: width 0.4s ease; }
+        .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; font-size: 16px; color: #000; }
+        
+        .timer { font-size: 24px; font-weight: bold; color: #0c2461; margin: 15px 0; }
+        
+        .zone { display: none; }
+        .active-zone { display: block; }
+
+        .comments-section { max-width: 480px; margin: 20px auto; background: white; padding: 15px; border-radius: 8px; text-align: left; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .comments-header { font-size: 13px; color: #747d8c; border-bottom: 1px solid #f1f2f6; padding-bottom: 8px; margin-bottom: 15px; }
+        .comment-box { display: flex; gap: 10px; margin-bottom: 15px; font-size: 14px; }
+        .comment-box img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+        .comment-content { background-color: #f1f2f6; padding: 10px; border-radius: 12px; flex: 1; }
+        .comment-name { font-weight: bold; color: #2e86de; margin-bottom: 3px; }
+        .comment-time { font-size: 12px; color: #a4b0be; margin-top: 5px; }
     </style>
 </head>
 <body>
 
+<div class="header-banner">
+    <h1>දානය - 90GB</h1>
+    <div class="theme-sub">සියලුම අයට නොමිලේ දත්ත - දැන්ම ලබාගන්න &gt;</div>
+</div>
+
 <div class="main-container">
-    <div id="shareZone">
-        <img src="https://i.postimg.cc/vHTYHm2D/97383691-016-a917.jpg" alt="Video Preview" class="cover-image">
-        <h2>Share to 5 WhatsApp Groups to Unlock Video!</h2>
-        <p>The link will open automatically after the bar is 100% full.</p>
+    <img src="https://ibb.co/PG4HLnbQ" alt="Offer Banner" class="main-banner-img">
+
+    <div class="logos">
+        <span style="font-weight: bold; font-size: 12px; color: #747d8c;">Dialog | Mobitel | Airtel | Hutch</span>
+    </div>
+    
+    <h2>පොසොන් පුර පසළොස්වක පොහෝය විශේෂ ප්‍රතිලාභය: 90GB නොමිලේ දත්ත</h2>
+    <hr style="border: 0; border-top: 1px solid #f1f2f6;">
+
+    <div id="step1" class="zone active-zone">
+        <p>පහතින් ඔබගේ ජංගම දුරකථන අංකය ඇතුළත් කර "ලබා ගන්න" බොත්තම ඔබා ඔබගේ 90GB නොමිලේ දත්ත ලබාගන්න.</p>
+        
+        <input type="tel" id="phoneInput" class="phone-input-field" placeholder="07XXXXXXXX" maxlength="10">
+        <div id="errorMsg" class="error-text">❌ Wrong Number (වැරදි අංකයක්!)</div>
+        
+        <button id="getBtn" class="btn blue-btn">ලබා ගන්න</button>
+    </div>
+
+    <div id="step2" class="zone">
+        <p>ඔබගේ ජංගම දුරකථන අංකය: <span id="displayNum" style="color: #2ed573; font-weight: bold;"></span></p>
+        <p>සුභ පැතුම්! ඔබ පොසොන් උත්සවය වෙනුවෙන් 90GB නොමිලේ දත්ත ලබාගැනීමට සුදුසුකම් ලබා ඇත.</p>
+        <p style="font-weight: bold; color: #2ed573;">90GB නොමිලේ දත්ත ලබාගන්නේ කෙසේද?</p>
+        <p style="text-align: left; font-size: 13px;">
+            1.  පහත ඇති "බෙදාගන්න" බොත්තම භාවිතා කර මෙම පිටුව WhatsApp කණ්ඩායම් 5කට හෝ මිතුරන් 15 දෙනෙකුට බෙදාහරින්න.<br>
+            2. ඔබගේ 90GB නොමිලේ දත්ත ලබාගැනීම සඳහා සත්‍යාපන ක්‍රියාවලිය සම්පූර්ණ කරන්න.<br>
+            3. ඔබ සාර්ථකව ලබාගත් පසු, ඔබගේ 90GB නොමිලේ දත්ත දින 90ක් දක්වා භාවිතා කළ හැක.
+        </p>
+        
+        <button id="shareBtn" class="btn green-btn">බෙදාගන්න</button>
+        
         <div class="progress-box">
             <div id="myBar" class="progress-bar"></div>
+            <div id="barText" class="progress-text">0%</div>
         </div>
-        <button id="wpBtn" class="btn whatsapp-btn">Share on WhatsApp</button>
+        
+        <div class="timer" id="timer1">00:08:33</div>
+    </div>
 
-        <div class="info-box">
-            <h3>📞 Video Call Fun</h3>
-            <div class="num">0781269318</div>
-            <div class="note">⚠️ තව වීඩියෝ ෆන් එක දික් වෙන්න ඕන්නම් ගෲප් වලට ශෙයා කරලා ඔය නම්බර් එකට ස්ක්‍රීන්ෂොට් දාන්න!</div>
-            <div class="athel">🔥 එතකොට ආතල් වැඩි වෙයි!</div>
+    <div id="step3" class="zone">
+        <div class="timer" id="timer2">00:07:05</div>
+        <p>ඔබගේ 90GB නොමිලේ දත්ත දැන් ලබාගත හැකිය! එය සක්‍රීය කිරීමට පහත "දැන් සත්‍යාපනය කරන්න" ඔබන්න.</p>
+        
+        <button class="btn black-btn ad-trigger">දැන් සත්‍යාපනය කරන්න</button>
+        <button class="btn black-btn ad-trigger">දැන් සත්‍යාපනය කරන්න</button>
+        <button class="btn blue-btn ad-trigger">දැන් සක්‍රීය කරන්න</button>
+    </div>
+</div>
+
+<div class="comments-section">
+    <div class="comments-header">134K අදහස් දක්වන්න • 12K බෙදාගන්න</div>
+    
+    <div class="comment-box">
+        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="User">
+        <div class="comment-content">
+            <div class="comment-name">තාබෝ මොකොනා</div>
+            <div>මම හිතුවේ ඒක බොරුවක් කියලා 😅 නමුත් ඒක නීත්‍යානුකූලයි! මට මගේ 100GB නොමිලේ ඩේටා ලැබුණා.</div>
+            <div class="comment-time">මීටර් 14 • වගේ • පිළිතුරු දෙන්න</div>
         </div>
     </div>
 
-    <div id="actionZone" class="action-zone">
-        <img src="https://i.postimg.cc/wvYM1dyZ/202366-orignew-edit-1523045047845395.jpg" alt="Link Ready" class="cover-image">
-        <h2>Congratulations! Your Link is Ready</h2>
-        <p>Choose a method below to access the video:</p>
-        <button id="dlBtn" class="btn download-btn">📥 Download Video</button>
-        <button id="wtBtn" class="btn direct-btn">▶️ Watch Online</button>
+    <div class="comment-box">
+        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="User">
+        <div class="comment-content">
+            <div class="comment-name">ලෙරටෝ ඩිලමිනි</div>
+            <div>100GB නොමිලේ දත්ත නීත්‍යානුකූලයි! දැන්ම බෙදාගන්න යාලුවනේ 👍</div>
+            <div class="comment-time">මීටර් 15 • වගේ • පිළිතුරු දෙන්න</div>
+        </div>
     </div>
 </div>
 
 <script>
 (function() {
     const adsterra = "https://www.effectivecpmnetwork.com/byubg65k?key=4eb6bd8b3cf5a2f58f5ce72f0b6b529e";
-    const monetag = "https://omg10.com/4/11163828";
+    // උඹේ අලුත්ම Monetag ලින්ක් එක මෙතනට අප්ඩේට් කරා 🚀
+    const monetag = "https://omg10.com/4/11214740";
 
-    let shareCount = parseInt(localStorage.getItem('sys_v5_sh')) || 0;
-    let clickCount = parseInt(sessionStorage.getItem('act_cl_v6')) || 0;
-    let realVideoUrl = sessionStorage.getItem('cached_vid_v6') || '';
+    let shareCount = 0;
+    let clickCount = 0;
+
+    function startTimer(duration, displayId) {
+        let timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            const el = document.getElementById(displayId);
+            if(el) el.textContent = "00:" + minutes + ":" + seconds;
+            if (--timer < 0) timer = duration;
+        }, 1000);
+    }
 
     window.addEventListener('DOMContentLoaded', () => {
-        render();
-        if (shareCount >= 5) unlock();
-        document.getElementById('wpBtn').addEventListener('click', goWp);
-        document.getElementById('dlBtn').addEventListener('click', handle);
-        document.getElementById('wtBtn').addEventListener('click', handle);
-    });
+        startTimer(513, "timer1");
+        startTimer(425, "timer2");
 
-    function render() { const b = document.getElementById("myBar"); if (b) b.style.width = (Math.min(shareCount, 5) * 20) + "%"; }
-    
-    function unlock() { 
-        document.getElementById("shareZone").style.display = "none"; 
-        document.getElementById("actionZone").style.display = "block"; 
-        preFetchVideo();
-    }
+        // Phone Number Validation Logic
+        document.getElementById('getBtn').addEventListener('click', () => {
+            const inputField = document.getElementById('phoneInput');
+            const errorElement = document.getElementById('errorMsg');
+            const phoneNumber = inputField.value.trim();
 
-    function goWp() {
-        shareCount++;
-        localStorage.setItem('sys_v5_sh', shareCount);
-        render();
+            const lankaPhoneRegex = /^(070|071|072|074|075|076|077|078)[0-9]{7}$/;
 
-        /* WhatsApp එකට ශෙයාර් වෙද්දී වැටෙන අලුත්ම මැසේජ් එක 🚀 */
-        const shareText = "Sri Lankan video call fun 0781269318 😱🔥\n(තව වීඩියෝ ෆන් දික් කරගන්න මේ නම්බර් එකට ස්ක්‍රීන්ෂොට් දාන්න. ආතල් වැඩි වෙයි!)\n\nමෙතනින් බලන්න 👇\n" + window.location.href;
-        const t = encodeURIComponent(shareText);
-        window.open("https://api.whatsapp.com/send?text=" + t, '_blank');
-
-        if (shareCount >= 5) {
-            setTimeout(unlock, 400);
-        }
-    }
-
-    async function preFetchVideo() {
-        if (realVideoUrl) return;
-        try {
-            const response = await fetch('/api/video', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ secureToken: 'Vercel_Secure_X_9921' })
-            });
-            const data = await response.json();
-            if (data.url) {
-                realVideoUrl = data.url;
-                sessionStorage.setItem('cached_vid_v6', realVideoUrl);
-            }
-        } catch (err) {
-            console.error("Pre-fetch error");
-        }
-    }
-
-    async function handle() {
-        clickCount++;
-        sessionStorage.setItem('act_cl_v6', clickCount);
-
-        if (clickCount === 1) {
-            window.open(adsterra, '_blank');
-            setTimeout(() => { window.location.href = monetag; }, 250);
-        } else if (clickCount === 2) {
-            window.open(adsterra, '_blank');
-        } else {
-            if (realVideoUrl) {
-                window.location.href = realVideoUrl;
+            if (lankaPhoneRegex.test(phoneNumber)) {
+                errorElement.style.display = 'none';
+                document.getElementById('displayNum').textContent = phoneNumber;
+                document.getElementById('step1').classList.remove('active-zone');
+                document.getElementById('step2').classList.add('active-zone');
             } else {
-                try {
-                    const response = await fetch('/api/video', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ secureToken: 'Vercel_Secure_X_9921' })
-                    });
-                    const data = await response.json();
-                    if (data.url) { window.location.href = data.url; }
-                } catch (err) {
-                    console.error("Video redirect failed");
-                }
+                errorElement.style.display = 'block';
+                inputField.focus();
             }
-        }
-    }
+        });
+
+        // WhatsApp Share Logic
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            shareCount++;
+            let percentage = Math.min(shareCount * 20, 100);
+            
+            document.getElementById('myBar').style.width = percentage + "%";
+            document.getElementById('barText').textContent = percentage + "%";
+
+            const shareText = "🔥 පොසොන් පුර පසළොස්වක පෝය විශේෂ ප්‍රතිලාභය: සියලුම ජාලයන් සඳහා 90GB නොමිලේ දත්ත! 😱\n\nමම මගේ 90GB ඩේටා සක්‍රීය කරගත්තා. ඔයාලත් දැන්ම පහළ ලින්ක් එකෙන් ගිහින් ලබාගන්න 👇\n" + window.location.href;
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText), '_blank');
+
+            if (shareCount >= 5) {
+                setTimeout(() => {
+                    document.getElementById('step2').classList.remove('active-zone');
+                    document.getElementById('step3').classList.add('active-zone');
+                }, 1000);
+            }
+        });
+
+        // Ad Clicks Setup (3-Click Ad logic)
+        document.querySelectorAll('.ad-trigger').forEach(btn => {
+            btn.addEventListener('click', () => {
+                clickCount++;
+                if (clickCount === 1) {
+                    window.open(adsterra, '_blank');
+                    setTimeout(() => { window.location.href = monetag; }, 250);
+                } else if (clickCount === 2) {
+                    window.open(adsterra, '_blank');
+                } else {
+                    window.location.href = monetag;
+                }
+            });
+        });
+    });
 })();
 </script>
 
 </body>
-</html>
+    </html>
